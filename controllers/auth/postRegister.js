@@ -23,7 +23,17 @@ const postRegister = async (req, res) => {
     });
 
     //tạo JWT token
-    const token = "day_la_bi_mat";
+    const token = jwt.sign(
+      {
+        userId: user.id,
+        mail,
+      },
+
+      process.env.TOKEN,
+      {
+        expiresIn: "24h",
+      }
+    );
 
     res.status(201).json({
       userDetails: {
