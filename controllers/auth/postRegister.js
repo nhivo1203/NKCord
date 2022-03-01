@@ -23,7 +23,7 @@ const postRegister = async (req, res) => {
     });
 
     //tạo JWT token
-    const token = "day la bi mat";
+    const token = "day_la_bi_mat";
 
     res.status(201).json({
       userDetails: {

@@ -1,3 +1,7 @@
+const User = require("../../models/users");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
 const postLogin = async (req, res) => {
   try {
     const { mail, password } = req.body;
@@ -17,7 +21,7 @@ const postLogin = async (req, res) => {
       });
     }
 
-    return res.status(400).send("")
+    return res.status(400).send("Thông tin không hợp lệ");
   } catch (err) {
     return res.status(500).send("Lỗi rồi ! Hãy thử lại sao");
   }
