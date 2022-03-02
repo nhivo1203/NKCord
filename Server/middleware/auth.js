@@ -10,7 +10,7 @@ const verifyToken = (req, res, next) => {
   }
   try {
     token = token.replace(/^Bearer\s+/, "");
-    const decoded = jwt.verify(token, config.TOKEN_KEY);
+    const decoded = jwt.verify(token, config.TOKEN);
     req.user = decoded;
   } catch (err) {
     return res.status(401).send("Token không hợp lệ");

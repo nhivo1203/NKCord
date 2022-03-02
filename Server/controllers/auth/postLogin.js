@@ -9,8 +9,17 @@ const postLogin = async (req, res) => {
     const user = await User.findOne({ mail: mail.toLowerCase() });
 
     if (user && (await bcrypt.compare(password, user.password))) {
-      //gửi token mới
-      const token = "day_la_bi_mat";
+      // send new token
+      const token = jwt.sign(
+        {
+          userId: user._id,
+          mail,
+        },
+        process.env.TOKEN,
+        {
+          expiresIn: "24h",
+        }
+      );
 
       return res.status(200).json({
         userDetails: {
